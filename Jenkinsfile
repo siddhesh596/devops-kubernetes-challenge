@@ -11,7 +11,7 @@ pipeline {
         KUBECONFIG = 'C:\\Users\\siddh\\.kube\\config'
 
         // Local Docker registry
-        REGISTRY = 'kind-registry:5000'
+        REGISTRY = 'localhost:5001'
 
         // Application
         IMAGE_NAME = 'devops-kubernetes-app'
