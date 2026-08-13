@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Windows executable paths
-        PYTHON = 'C:\\Users\\siddh\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
+        PYTHON = 'C:\\Users\\siddh\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
         DOCKER = 'C:\\Users\\siddh\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe'
         KUBECTL = 'C:\\Users\\siddh\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe'
 
