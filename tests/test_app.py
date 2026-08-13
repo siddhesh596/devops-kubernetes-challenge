@@ -86,11 +86,10 @@ def client():
 
 def test_index(client):
     resp = client.get("/")
+
     assert resp.status_code == 200
-    body = resp.get_json()
-    assert body["status"] == "running"
-    assert "application" in body
-    assert "version" in body
+    assert resp.content_type.startswith("text/html")
+    assert b"DevOps Task Manager" in resp.data
 
 
 def test_health(client):

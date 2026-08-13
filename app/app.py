@@ -8,7 +8,7 @@ application under test for a Kubernetes / CI-CD infrastructure challenge.
 import logging
 import sys
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 import database
 from config import Config
@@ -93,13 +93,7 @@ def validate_task_payload(data, partial=False):
 
 @app.route("/", methods=["GET"])
 def index():
-    return jsonify(
-        {
-            "application": Config.APP_NAME,
-            "version": Config.APP_VERSION,
-            "status": "running",
-        }
-    )
+    return render_template("index.html")
 
 
 @app.route("/health", methods=["GET"])
