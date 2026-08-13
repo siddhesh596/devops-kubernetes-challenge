@@ -5,59 +5,47 @@ metadata:
   namespace: devops
 spec:
   replicas: 2
-
   selector:
     matchLabels:
       app: backend
-
   template:
     metadata:
       labels:
         app: backend
-
     spec:
       containers:
         - name: backend
-          image: devops-kubernetes-app:1.0
-          imagePullPolicy: IfNotPresent
-
+          image: kind-registry:5000/devops-kubernetes-app:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
-
           env:
             - name: DB_HOST
               value: postgres-service
-
             - name: DB_PORT
               value: "5432"
-
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_DB
-
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_USER
-
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_PASSWORD
-
           resources:
             requests:
               cpu: "100m"
               memory: "128Mi"
-
             limits:
               cpu: "500m"
               memory: "256Mi"
-
           readinessProbe:
             httpGet:
               path: /health
@@ -66,7 +54,6 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 2
             failureThreshold: 3
-
           livenessProbe:
             httpGet:
               path: /health
@@ -85,10 +72,8 @@ metadata:
 spec:
   selector:
     app: backend
-
   ports:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-
   type: ClusterIP
